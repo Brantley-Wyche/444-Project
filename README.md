@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # final-project
 
 > ISTE 444 Final Project
@@ -19,3 +20,7 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# 444-Project
+Final Project for ISTE 444
+>>>>>>> 48800a11cd398b47508bba68788d311ce8e62bb6
