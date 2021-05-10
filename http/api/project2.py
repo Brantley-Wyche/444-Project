@@ -21,6 +21,12 @@ except Exception as ex:
     print(ex)
 
 
+# LANDING PAGE
+@app.route("/", methods=["GET"])
+def landing_page():
+    return "<h1>Movie Inventory</h1>"
+
+
 # CREATE MOVIE
 @app.route("/movie", methods=["POST"])
 def create_movie():
