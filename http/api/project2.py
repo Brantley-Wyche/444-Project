@@ -32,6 +32,8 @@ def create_movie():
             status=200,
             mimetpye="application/json"
         )
+    except:
+        print("error")
 
 
 @app.route("/movies", methods=["GET"])
@@ -39,7 +41,8 @@ def get_all_movies():
     try: 
         dbResponse = db.find()
         return dbResponse
-
+    except:
+        print("error")
 
 @app.route("/movie/<int:movie_id>", methods=["GET"])
 def get_movie(movie_id):
@@ -61,7 +64,8 @@ def get_movie(movie_id):
             status=200,
             mimetpye="application/json"
         )
-
+    except:
+        print("error")
 
 
 @app.route("/movie/<int:movie_id>", methods=["PUT"])
