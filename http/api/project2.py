@@ -79,10 +79,9 @@ def get_movie(movie_id):
 def update_movie(movie_id):
     try:
         movie = request.get_json()
-        dbResponse = moviedb.update_one(
-            {"_id":ObjectId(movie_id)},
-            {"$set":{movie}}
-        )
+        query = { "_id": ObjectId(movie_id) }
+        new_values = { "$set": movie }
+        dbResponse = moviedb.update_one(query, new_values)
         if dbResponse.modified_count == 1:
             return Response(
                 response=json.dumps({
