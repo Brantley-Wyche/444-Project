@@ -21,9 +21,7 @@ except:
 def create_movie():
     try:
         movie = request.get_json()
-        print(movie)
-        dbResponse = db.insert_one(movie)
-        print(dbResponse)
+        dbResponse = db.movies.insert_one(movie)
         print(dbResponse.inserted_id)
         return Response(
             response= json.dumps(
