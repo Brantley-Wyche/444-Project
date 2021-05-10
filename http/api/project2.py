@@ -1,5 +1,5 @@
 from flask import Flask, request
-
+from bson.objectid import ObjectId
 import pymongo
 import json
 
@@ -12,37 +12,43 @@ try:
         serverSelectionTimeoutMS = 1000
     )
     db = mongo.movies
+    moviedb = db.movies
     mongo.server_info()
-except:
+except Exception as ex:
     print("ERROR - Cannot connect to the DB")
+    print(ex)
 
 
 @app.route("/movie", methods=["POST"])
 def create_movie():
     try:
         movie = request.get_json()
-        dbResponse = db.movies.insert_one(movie)
+        dbResponse = moviedb.insert_one(movie)
         print(dbResponse.inserted_id)
         return Response(
             response= json.dumps(
                 {
-                    "message", "movie created", 
+                    "_id": f"{dbResponse.inserted_id}"
+                    "message": "movie created"
                 }
             ),
             status=200,
-            mimetpye="application/json"
+            mimetype="application/json"
         )
-    except:
-        print("error")
+    except Exception as ex:
+        print(ex)
 
 
 @app.route("/movies", methods=["GET"])
 def get_all_movies():
     try: 
         dbResponse = db.find()
+        movies = list(dbResponse)
+        for movie in movies:
+            movie["_id"] = str(movie["_id"])
         return dbResponse
-    except:
-        print("error")
+    except Exception as ex:
+        print(ex)
 
 
 @app.route("/movie/<int:movie_id>", methods=["GET"])
@@ -65,8 +71,8 @@ def get_movie(movie_id):
             status=200,
             mimetpye="application/json"
         )
-    except:
-        print("error")
+    except Exception as ex:
+        print(ex)
 
 
 @app.route("/movie/<int:movie_id>", methods=["PUT"])
