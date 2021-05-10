@@ -59,7 +59,7 @@ def get_all_movies():
 
 
 # GET A MOVIE
-@app.route("/movie/<int:movie_id>", methods=["GET"])
+@app.route("/movie/<movie_id>", methods=["GET"])
 def get_movie(movie_id):
     try:
         movie = moviedb.find_one({"_id": ObjectId(movie_id)})
@@ -75,7 +75,7 @@ def get_movie(movie_id):
 
 
 # UPDATE A MOVIE
-@app.route("/movie/<int:movie_id>", methods=["PUT"])
+@app.route("/movie/<movie_id>", methods=["PUT"])
 def update_movie(movie_id):
     try:
         movie = request.get_json()
@@ -107,7 +107,7 @@ def update_movie(movie_id):
 
 
 # DELETE A MOVIE
-@app.route("/movie/<int:movie_id>", methods=["DELETE"])
+@app.route("/movie/<movie_id>", methods=["DELETE"])
 def delete_movie(movie_id):
     try:
         dbResponse = moviedb.delete_one({"_id":ObjectId(movie_id)})
