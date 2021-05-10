@@ -1,7 +1,6 @@
 from flask import Flask, request
 from bson.objectid import ObjectId
-import pymongo
-import json
+import pymongo, json
 
 app = Flask(__name__)
 
@@ -26,14 +25,11 @@ def create_movie():
         dbResponse = moviedb.insert_one(movie)
         print(dbResponse.inserted_id)
         return Response(
-            response= json.dumps(
-                {
-                    "_id": f"{dbResponse.inserted_id}"
-                    "message": "movie created"
-                }
+            response = json.dumps(
+                {"_id":f"{dbResponse.inserted_id}", "message":"movie created"}
             ),
-            status=200,
-            mimetype="application/json"
+            status = 200,
+            mimetype = "application/json"
         )
     except Exception as ex:
         print(ex)
