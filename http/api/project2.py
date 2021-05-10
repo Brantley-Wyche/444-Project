@@ -21,7 +21,9 @@ except:
 def create_movie():
     try:
         movie = request.get_json()
+        print(movie)
         dbResponse = db.insert_one(movie)
+        print(dbResponse)
         print(dbResponse.inserted_id)
         return Response(
             response= json.dumps(
@@ -43,6 +45,7 @@ def get_all_movies():
         return dbResponse
     except:
         print("error")
+
 
 @app.route("/movie/<int:movie_id>", methods=["GET"])
 def get_movie(movie_id):
