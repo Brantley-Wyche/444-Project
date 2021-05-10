@@ -63,7 +63,7 @@ def get_all_movies():
 def get_movie(movie_id):
     try:
         movie = moviedb.find_one({"_id": movie_id})
-        print("Movie: " + movie_id)
+        print(movie)
         return Response(
             response = json.dumps(movie),
             status=200,
