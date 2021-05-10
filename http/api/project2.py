@@ -62,7 +62,7 @@ def get_all_movies():
 @app.route("/movie/<int:movie_id>", methods=["GET"])
 def get_movie(movie_id):
     try:
-        movie = moviedb.find_one({"id": movie_id})
+        movie = moviedb.find_one({"_id": movie_id})
         return Response(
             response = json.dumps(movie),
             status=200,
