@@ -67,7 +67,7 @@ def get_movie(movie_id):
         return Response(
             response = json.dumps(movie),
             status=200,
-            mimetpye="application/json"
+            mimetype="application/json"
         )
     except Exception as ex:
         print(ex)
