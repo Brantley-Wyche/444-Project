@@ -49,7 +49,7 @@ def get_all_movies():
             movie["_id"] = str(movie["_id"])
 
         return Response(
-            response=json.dumps(movies)
+            response=json.dumps(movies),
             status=200,
             mimetype="application/json"
         )
@@ -87,7 +87,7 @@ def update_movie(movie_id):
                 response=json.dumps({
                     "message":"movie updated",
                     "movie":movie
-                })
+                }),
                 status=200,
                 mimetype="application/json"
             )
@@ -95,7 +95,7 @@ def update_movie(movie_id):
             return Response(
                 response=json.dumps({
                     "message":"nothing to update"
-                })
+                }),
                 status=200,
                 mimetype="application/json"
             )
