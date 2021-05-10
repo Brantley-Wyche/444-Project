@@ -27,7 +27,6 @@ def create_movie():
             response= json.dumps(
                 {
                     "message", "movie created", 
-                    "id": f"{dbResponse.inserted_id}"
                 }
             ),
             status=200,
