@@ -21,7 +21,7 @@ export default {
         },
         {
           id: 1,
-          text: 'Add/Get/Update/Delete Movie',
+          text: 'CRUD Movie',
           page:'/movie/'
         },
         {

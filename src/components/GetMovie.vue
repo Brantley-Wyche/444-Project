@@ -1,7 +1,7 @@
 <template>
-  <div class="all">
-    <h1> {{msg}}</h1>
-      <table>
+  <div class="getmovie">
+    <h1>{{ msg }}</h1>
+    <table>
         <thead>
         <tr>
             <th>TITLE</th>
@@ -15,36 +15,23 @@
         <tbody>
             
         </tbody>
-      </table>
-    
+    </table>
+    <p>{{$route.params.id}}</p>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  name: 'AllMovie',
+  name: 'GetMovie',
   data () {
     return {
-      msg: 'All Movies',
-      movies: []
+      msg: 'Movie Info',
+      
     }
   },
-  methods: {
-    getMovies() {
-      const path = 'http://localhost:8080/movies';
-      axios.get(path)
-        .then((res) => {
-          this.movies = res.data.movies;
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-        });
-    },
-  },
-  created() {
-    this.getMovies();
-  },
+  
 }
 </script>
 
@@ -55,12 +42,10 @@ h1, h2 {
 }
 ul {
   padding: 0;
-  
 }
 li {
   display: inline-block;
-  margin: 0 10px;
-  
+  margin-bottom: 15px;
 }
 a {
   color: #42b983;

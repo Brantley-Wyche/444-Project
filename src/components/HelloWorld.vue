@@ -8,6 +8,7 @@
           <b>{{func.action}}</b> : {{func.desc}}
         </li>
       </ul>
+      
     </div>
     <hr />
   </div>
