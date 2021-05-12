@@ -1,12 +1,8 @@
 from flask import Flask, request, Response
 from bson.objectid import ObjectId
-from flask_cors import CORS
 import pymongo, json
 
 app = Flask(__name__)
-
-# enable CORS
-CORS(app, resources={r'/*': {'origins': '*'}})
 
 # Connect to the database
 try:
