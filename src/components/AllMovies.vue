@@ -41,9 +41,8 @@ export default {
     }
   },
   methods: {
-    getMovies() {
-      const path = 'http://localhost:8080/movies';
-      axios.get(path)
+    getMovies() {;
+      axios.get(this.$hostname)
         .then((res) => {
           this.movies = res.data.movies;
         })

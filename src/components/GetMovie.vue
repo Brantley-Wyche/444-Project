@@ -45,7 +45,7 @@ export default {
           console.log(this.$route.params.id);
       },
       getMovie(movieID) {
-      const path = 'http://localhost:8080/movie/${movieID}';
+      const path = `${this.$hostname}/movie/${movieID}`;
       axios.get(path)
         .then((res) => {
           this.movies = res.data.movies;

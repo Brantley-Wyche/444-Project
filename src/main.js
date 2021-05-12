@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 
 Vue.config.productionTip = false
+Vue.prototype.$hostname = 'http://192.168.44.19:80'
 
 /* eslint-disable no-new */
 new Vue({
