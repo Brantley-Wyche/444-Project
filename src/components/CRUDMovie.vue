@@ -1,26 +1,87 @@
 <template>
-  <div class="add" v-for="movie in movies">
+  <div class="add">
     <h1> {{msg}}</h1>
-    <p>Title: <input v-model="addMovieForm.title"></p>
-    <p>Description: <input v-model="addMovieForm.description"></p>
-    <p>Image URL: <input v-model="addMovieForm.imageUrl"></p>
-    <p>Year: <input v-model="addMovieForm.year"></p>
-    <p>Director: <input v-model="addMovieForm.director"></p>
-    <p>Genre: <input v-model="addMovieForm.genre"></p>
-    <p>Duration: <input v-model="addMovieForm.duration"></p>
-    <button v:on-click="onSubmit($event)">Submit</button>
+    <div>
+
+      <!-- Form for adding a movie using POST -->
+      <table align="center">
+          <thead>
+          <tr>
+              <th>TITLE</th>
+              <th>DESCRIPTION</th>
+              <th>IMAGE URL</th>
+              <th>YEAR</th>
+              <th>DIRECTOR</th>
+              <th>GENRE</th>
+              <th>DURATION</th>
+          </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td><input v-model="addMovieForm.title"/></td>
+                <td><input v-model="addMovieForm.description"></td>
+                <td><input v-model="addMovieForm.imageUrl"></td>
+                <td><input v-model="addMovieForm.year"></td>
+                <td><input v-model="addMovieForm.director"></td>
+                <td><input v-model="addMovieForm.genre"></td>
+                <td><input v-model="addMovieForm.duration"></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <br />
+      <button @click="onSubmit">Submit</button>
+
+    <!-- Get a movie by ID -->
     <hr />
     <h1>Get a Movie</h1>
     <p>ID: <input v-model="id"></p>
     <button><router-link :to="{name: 'GetMovie', params: {id}}">Get</router-link></button>
     <hr />
+
+    <br />
+
+    <!-- Update a movie's info -->
     <h1>Update a Movie</h1>
-    <p>ID: <input></p>
-    <button v:on-click="editMovie(movie)">UPDATE</button>
+    <div>
+      <table align="center">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>TITLE</th>
+          <th>DESCRIPTION</th>
+          <th>IMAGE URL</th>
+          <th>YEAR</th>
+          <th>DIRECTOR</th>
+          <th>GENRE</th>
+          <th>DURATION</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><input v-model="editForm.id"/></td>
+              <td><input v-model="editForm.title"/></td>
+              <td><input v-model="editForm.description"></td>
+              <td><input v-model="editForm.imageUrl"></td>
+              <td><input v-model="editForm.year"></td>
+              <td><input v-model="editForm.director"></td>
+              <td><input v-model="editForm.genre"></td>
+              <td><input v-model="editForm.duration"></td>
+            </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    <br />
+    <button @click="onSubmitUpdate">UPDATE</button>
     <hr />
+
+    <br />
+
+    <!-- Delete a movie -->
     <h1>Delete a Movie</h1>
-    <p>Title: <input></p>
-    <button v:on-click="onDeleteMovie(movie)">DELETE</button>
+    <p>ID: <input v-model="delID"></p>
+    <button @click="deleteMovie(delID)">DELETE</button>
   </div>
   
 </template>
@@ -34,6 +95,7 @@ export default {
     return {
       msg: 'Add a Movie',
       id: this.$route.params.id,
+      delID: '',
       movies: [],
       addMovieForm: {
         title: '',
@@ -45,6 +107,7 @@ export default {
         duration: '',
       },
       editForm: {
+        id: '',
         title: '',
         description: '',
         imageUrl: '',
@@ -67,6 +130,7 @@ export default {
       this.addMovieForm.genre = '';
       this.addMovieForm.duration = '';
 
+      this.editForm.id = '';
       this.editForm.title = '';
       this.editForm.description = '';
       this.editForm.imageUrl = '';
@@ -74,6 +138,8 @@ export default {
       this.editForm.director = '';
       this.editForm.genre = '';
       this.editForm.duration = '';
+
+      
     },
     getMovies() {
       const path = 'http://localhost:8080/movies';
@@ -117,6 +183,7 @@ export default {
     onSubmitUpdate(event) {
       event.preventDefault();
       const info = {
+        id: this.editForm.id,
         title: this.editForm.title,
         description: this.editForm.description,
         imageUrl: this.editForm.imageUrl,
@@ -126,6 +193,7 @@ export default {
         duration: this.editForm.duration,
       };
       this.updateMovie(info, this.editForm.id);
+      this.initForm();
     },
     updateMovie(info, movieID) {
       const path = `http://localhost:8080/movie/${movieID}`;
@@ -141,15 +209,13 @@ export default {
           this.getMovies();
         });
     },
-    editMovie(movie) {
-      this.editForm = movie;
-    },
     deleteMovie(movieID) {
       const path = `http://localhost:8080/movie/${movieID}`;
       axios.delete(path)
         .then(() => {
           this.getMovies();
           this.message = 'Book removed!';
+          console.log(this.message);
           this.showMessage = true;
         })
         .catch((error) => {
@@ -157,9 +223,6 @@ export default {
           console.error(error);
           this.getMovies();
         });
-    },
-    onDeleteMovie(movie) {
-      this.deleteMovie(movie.id);
     },
   }
 }

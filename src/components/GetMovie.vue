@@ -1,11 +1,13 @@
 <template>
   <div class="getmovie">
     <h1>{{ msg }}</h1>
-    <table>
+    <table align="center">
         <thead>
         <tr>
+            <th>ID</th>
             <th>TITLE</th>
             <th>DESCRIPTION</th>
+            <th>IMAGE URL</th>
             <th>YEAR</th>
             <th>DIRECTOR</th>
             <th>GENRE</th>
@@ -13,10 +15,17 @@
         </tr>
         </thead>
         <tbody>
-            
+            <tr v-for="movie in movies">
+              <td>{{movie.title}}</td>
+              <td>{{movie.description}}</td>
+              <td>{{movie.imageUrl}}</td>
+              <td>{{movie.year}}</td>
+              <td>{{movie.director}}</td>
+              <td>{{movie.genre}}</td>
+              <td>{{movie.duration}}</td>
+            </tr>
         </tbody>
     </table>
-    <p>{{$route.params.id}}</p>
   </div>
 </template>
 
@@ -28,9 +37,29 @@ export default {
   data () {
     return {
       msg: 'Movie Info',
-      
+      movies: [],
     }
   },
+  methods: {
+      loggy(id){
+          console.log(this.$route.params.id);
+      },
+      getMovie(movieID) {
+      const path = 'http://localhost:8080/movie/${movieID}';
+      axios.get(path)
+        .then((res) => {
+          this.movies = res.data.movies;
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+        });
+    },
+  },
+  created() {
+      this.getMovie(this.$route.params.id);
+      this.loggy();
+  }
   
 }
 </script>

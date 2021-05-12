@@ -17,7 +17,7 @@ export default new Router({
     },
     {
       path: '/movie',
-      name: 'AddMovie',
+      name: 'CRUDMovie',
       component: CRUDMovie
     },
     {

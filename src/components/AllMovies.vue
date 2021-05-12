@@ -1,11 +1,12 @@
 <template>
   <div class="all">
     <h1> {{msg}}</h1>
-      <table>
+      <table align="center">
         <thead>
         <tr>
             <th>TITLE</th>
             <th>DESCRIPTION</th>
+            <th>IMAGE URL</th>
             <th>YEAR</th>
             <th>DIRECTOR</th>
             <th>GENRE</th>
@@ -13,7 +14,15 @@
         </tr>
         </thead>
         <tbody>
-            
+            <tr v-for="movie in movies">
+              <td>{{movie.title}}</td>
+              <td>{{movie.description}}</td>
+              <td>{{movie.imageUrl}}</td>
+              <td>{{movie.year}}</td>
+              <td>{{movie.director}}</td>
+              <td>{{movie.genre}}</td>
+              <td>{{movie.duration}}</td>
+            </tr>
         </tbody>
       </table>
     
@@ -21,6 +30,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'AllMovie',
   data () {

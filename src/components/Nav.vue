@@ -21,7 +21,7 @@ export default {
         },
         {
           id: 1,
-          text: 'CRUD Movie',
+          text: 'CRUD Movies',
           page:'/movie/'
         },
         {
