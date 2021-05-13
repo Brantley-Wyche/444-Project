@@ -36,7 +36,7 @@
     <hr />
     <h1>Get a Movie</h1>
     <p>ID: <input v-model="id"></p>
-    <button><router-link :to="{name: 'GetMovie', params: {id}}">Get</router-link></button>
+    <button @click="getMovie(id)"><router-link :to="{name: 'GetMovie', params: {id}}">Get</router-link></button>
     <hr />
 
     <br />
@@ -151,6 +151,17 @@ export default {
           console.error(error);
         });
     },
+    getMovie(movieID) {
+      const path = `${this.$hostname}/getmovie/${movieID}`;
+      axios.get(path)
+        .then((res) => {
+          this.movies = res.data.movies;
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+        });
+    },
     addMovie(new_movie) {
       axios.post(this.$hostname, new_movie)
         .then(() => {
@@ -194,7 +205,7 @@ export default {
       this.initForm();
     },
     updateMovie(info, movieID) {
-      const path = `${this.$hostname}/movie/${movieID}`;
+      const path = `${this.$hostname}/getmovie/${movieID}`;
       axios.put(path, info)
         .then(() => {
           this.getMovies();
@@ -208,7 +219,7 @@ export default {
         });
     },
     deleteMovie(movieID) {
-      const path = `${this.$hostname}/movie/${movieID}`;
+      const path = `${this.$hostname}/getmovie/${movieID}`;
       axios.delete(path)
         .then(() => {
           this.getMovies();
