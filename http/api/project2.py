@@ -8,8 +8,10 @@ template_dir = os.path.abspath('../../dist')
 # instantiate the app
 app = Flask(__name__, template_folder=template_dir)
 logging.basicConfig(filename='project2.log', 
+                    filemode='a',
                     level=logging.DEBUG,
                     format='%(asctime)s %(levelname)s : %(message)s')
+logger=logging.getLogger()
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
@@ -34,7 +36,7 @@ except Exception as ex:
 # LANDING PAGE
 @app.route('/')
 def landing_page():
-    app.logger.info('visited /')
+    logger.info('visited /')
     return render_template('index.html')
 
 
@@ -42,7 +44,7 @@ def landing_page():
 @app.route("/movie", methods=["POST"])
 def create_movie():
     try:
-        app.logger.info('visited POST /movie')
+        logger.info('visited POST /movie')
         movie = request.get_json()
         dbResponse = moviedb.insert_one(movie)
         return Response(
@@ -59,7 +61,7 @@ def create_movie():
 @app.route("/movies", methods=["GET"])
 def get_all_movies():
     try: 
-        app.logger.info('visited GET /movies')
+        logger.info('visited GET /movies')
         dbResponse = moviedb.find()
         movies = list(dbResponse)
 
@@ -81,7 +83,7 @@ def get_all_movies():
 @app.route("/movie/<movie_id>", methods=["GET"])
 def get_movie(movie_id):
     try:
-        app.logger.info('visited GET /movie/id')
+        logger.info('visited GET /movie/id')
         movie = moviedb.find_one({"_id": ObjectId(movie_id)})
         movie["_id"] = str(movie["_id"])
         return Response(
@@ -98,7 +100,7 @@ def get_movie(movie_id):
 @app.route("/movie/<movie_id>", methods=["PUT"])
 def update_movie(movie_id):
     try:
-        app.logger.info('visited PUT /movie/id')
+        logger.info('visited PUT /movie/id')
         movie = request.get_json()
         query = { "_id": ObjectId(movie_id) }
         new_values = { "$set": movie }
@@ -130,7 +132,7 @@ def update_movie(movie_id):
 @app.route("/movie/<movie_id>", methods=["DELETE"])
 def delete_movie(movie_id):
     try:
-        app.logger.info('visited DELETE /movie/id')
+        logger.info('visited DELETE /movie/id')
         dbResponse = moviedb.delete_one({"_id":ObjectId(movie_id)})
         if dbResponse.deleted_count == 1:
             return Response(
