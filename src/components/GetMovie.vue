@@ -16,6 +16,7 @@
         </thead>
         <tbody>
             <tr v-for="movie in movies">
+              <td>{{movie.id}}</td>
               <td>{{movie.title}}</td>
               <td>{{movie.description}}</td>
               <td>{{movie.imageUrl}}</td>
