@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 import pymongo, json
 import os
 
-template_dir = os.path.abspath('../../')
+template_dir = os.path.abspath('../../dist')
 # instantiate the app
 app = Flask(__name__, template_folder=template_dir)
 
