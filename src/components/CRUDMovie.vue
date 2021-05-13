@@ -192,7 +192,6 @@ export default {
     onSubmitUpdate(event) {
       event.preventDefault();
       const info = {
-        '_id': this.editForm.id,
         'title': this.editForm.title,
         'description': this.editForm.description,
         'imageUrl': this.editForm.imageUrl,
