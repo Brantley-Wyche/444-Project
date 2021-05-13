@@ -142,7 +142,7 @@ export default {
       
     },
     getMovies() {
-      axios.get(this.$hostname)
+      axios.get(`${this.$hostname}/movies`)
         .then((res) => {
           this.movies = res.data.movies;
         })
@@ -152,7 +152,7 @@ export default {
         });
     },
     addMovie(new_movie) {
-      axios.post(this.$hostname, new_movie)
+      axios.post(`${this.$hostname}/movie`, new_movie)
         .then(() => {
           this.getMovies();
           this.message = 'Movie added!';
@@ -167,13 +167,13 @@ export default {
     onSubmit(event) {
       event.preventDefault();
       const info = {
-        title: this.addMovieForm.title,
-        description: this.addMovieForm.description,
-        imageUrl: this.addMovieForm.imageUrl,
-        year: this.addMovieForm.year,
-        director: this.addMovieForm.director,
-        genre: this.addMovieForm.genre,
-        duration: this.addMovieForm.duration,
+        'title': this.addMovieForm.title,
+        'description': this.addMovieForm.description,
+        'imageUrl': this.addMovieForm.imageUrl,
+        'year': this.addMovieForm.year,
+        'director': this.addMovieForm.director,
+        'genre': this.addMovieForm.genre,
+        'duration': this.addMovieForm.duration,
       };
       this.addMovie(info);
       this.initForm();
@@ -181,14 +181,14 @@ export default {
     onSubmitUpdate(event) {
       event.preventDefault();
       const info = {
-        id: this.editForm.id,
-        title: this.editForm.title,
-        description: this.editForm.description,
-        imageUrl: this.editForm.imageUrl,
-        year: this.editForm.year,
-        director: this.editForm.director,
-        genre: this.editForm.genre,
-        duration: this.editForm.duration,
+        'id': this.editForm.id,
+        'title': this.editForm.title,
+        'description': this.editForm.description,
+        'imageUrl': this.editForm.imageUrl,
+        'year': this.editForm.year,
+        'director': this.editForm.director,
+        'genre': this.editForm.genre,
+        'duration': this.editForm.duration,
       };
       this.updateMovie(info, this.editForm.id);
       this.initForm();
