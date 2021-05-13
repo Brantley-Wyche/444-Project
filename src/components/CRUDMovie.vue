@@ -222,7 +222,7 @@ export default {
       axios.delete(path)
         .then(() => {
           this.getMovies();
-          this.message = 'Book removed!';
+          this.message = 'Movie removed!';
           console.log(this.message);
           this.showMessage = true;
         })
