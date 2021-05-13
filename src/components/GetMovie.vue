@@ -49,6 +49,7 @@ export default {
       const path = `${this.$hostname}/movie/${movieID}`;
       axios.get(path)
         .then((res) => {
+          console.log(res);
           this.movies = res.data;
         })
         .catch((error) => {
