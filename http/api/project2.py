@@ -30,7 +30,6 @@ except Exception as ex:
 
 # LANDING PAGE
 @app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
 def landing_page():
     return render_template('index.html')
 
