@@ -1,11 +1,10 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, render_template
 from flask_cors import CORS
 from bson.objectid import ObjectId
 import pymongo, json
 
 # instantiate the app
 app = Flask(__name__)
-app.config.from_object(__name__)
 
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
@@ -30,7 +29,7 @@ except Exception as ex:
 # LANDING PAGE
 @app.route("/", methods=["GET"])
 def landing_page():
-    return '../../index.html'
+    return render_template("index.html")
 
 
 # CREATE MOVIE
