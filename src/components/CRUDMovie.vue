@@ -142,7 +142,7 @@ export default {
       
     },
     getMovies() {
-      axios.get(`${this.$hostname}/allmovies`)
+      axios.get(`${this.$hostname}/movies`)
         .then((res) => {
           this.movies = res.data.movies;
         })
@@ -152,7 +152,7 @@ export default {
         });
     },
     getMovie(movieID) {
-      const path = `${this.$hostname}/getmovie/${movieID}`;
+      const path = `${this.$hostname}/movie/${movieID}`;
       axios.get(path)
         .then((res) => {
           this.movies = res.data.movies;
@@ -163,7 +163,7 @@ export default {
         });
     },
     addMovie(new_movie) {
-      axios.post(`${this.$hostname}/crudmovie`, new_movie)
+      axios.post(`${this.$hostname}/movie`, new_movie)
         .then(() => {
           this.getMovies();
           this.message = 'Movie added!';
@@ -205,7 +205,7 @@ export default {
       this.initForm();
     },
     updateMovie(info, movieID) {
-      const path = `${this.$hostname}/getmovie/${movieID}`;
+      const path = `${this.$hostname}/movie/${movieID}`;
       axios.put(path, info)
         .then(() => {
           this.getMovies();
@@ -219,7 +219,7 @@ export default {
         });
     },
     deleteMovie(movieID) {
-      const path = `${this.$hostname}/getmovie/${movieID}`;
+      const path = `${this.$hostname}/movie/${movieID}`;
       axios.delete(path)
         .then(() => {
           this.getMovies();

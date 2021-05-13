@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     getMovies() {;
-      axios.get(`${this.$hostname}/allmovies`)
+      axios.get(`${this.$hostname}/movies`)
         .then((res) => {
           console.log(res);
           this.movies = res.data;
