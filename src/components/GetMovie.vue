@@ -16,7 +16,7 @@
         </thead>
         <tbody>
             <tr v-for="movie in movies" :key="movie._id">
-              <td>{{movie.id}}</td>
+              <td>{{movie._id}}</td>
               <td>{{movie.title}}</td>
               <td>{{movie.description}}</td>
               <td>{{movie.imageUrl}}</td>
