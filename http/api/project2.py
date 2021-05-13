@@ -13,9 +13,6 @@ logging.basicConfig(filename='project2.log',
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-def log(path):
-    app.logger.info()
-    return datetime.now().isoformat()
 
 # Connect to the database
 try:
