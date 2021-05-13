@@ -29,7 +29,7 @@ except Exception as ex:
 # LANDING PAGE
 @app.route("/", methods=["GET"])
 def landing_page():
-    return render_template("index.html")
+    return render_template('../../index.html')
 
 
 # CREATE MOVIE
