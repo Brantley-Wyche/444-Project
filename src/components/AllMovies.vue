@@ -14,7 +14,7 @@
         </tr>
         </thead>
         <tbody>
-            <tr v-for="movie in movies">
+            <tr v-for="movie in movies" :key="movie._id">
               <td>{{movie.title}}</td>
               <td>{{movie.description}}</td>
               <td>{{movie.imageUrl}}</td>
@@ -42,9 +42,10 @@ export default {
   },
   methods: {
     getMovies() {;
-      axios.get(this.$hostname)
+      axios.get(`${this.$hostname}/movies`)
         .then((res) => {
-          this.movies = res.data.movies;
+          console.log(res);
+          this.movies = res.data;
         })
         .catch((error) => {
           // eslint-disable-next-line
