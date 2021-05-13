@@ -50,7 +50,7 @@ export default {
       axios.get(path)
         .then((res) => {
           console.log(res);
-          this.movies = res.data;
+          this.movies.push(res.data);
         })
         .catch((error) => {
           // eslint-disable-next-line

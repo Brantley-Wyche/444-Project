@@ -155,7 +155,7 @@ export default {
       const path = `${this.$hostname}/movie/${movieID}`;
       axios.get(path)
         .then((res) => {
-          this.movies = res.data;
+          this.movies.push(res.data);
         })
         .catch((error) => {
           // eslint-disable-next-line
