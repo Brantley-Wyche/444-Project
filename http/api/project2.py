@@ -2,9 +2,11 @@ from flask import Flask, request, Response, render_template
 from flask_cors import CORS
 from bson.objectid import ObjectId
 import pymongo, json
+import os
 
+template_dir = os.path.abspath('../../')
 # instantiate the app
-app = Flask(__name__)
+app = Flask(__name__, template_folder=template_dir)
 
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
@@ -29,7 +31,7 @@ except Exception as ex:
 # LANDING PAGE
 @app.route("/", methods=["GET"])
 def landing_page():
-    return render_template('../../index.html')
+    return render_template('index.html')
 
 
 # CREATE MOVIE
