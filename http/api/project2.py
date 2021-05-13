@@ -1,8 +1,14 @@
 from flask import Flask, request, Response
+from flask_cors import CORS
 from bson.objectid import ObjectId
 import pymongo, json
 
+# instantiate the app
 app = Flask(__name__)
+app.config.from_object(__name__)
+
+# enable CORS
+CORS(app, resources={r'/*': {'origins': '*'}})
 
 # Connect to the database
 try:
@@ -24,7 +30,7 @@ except Exception as ex:
 # LANDING PAGE
 @app.route("/", methods=["GET"])
 def landing_page():
-    return "<h1>Movie Inventory</h1>"
+    return '../../index.html'
 
 
 # CREATE MOVIE
