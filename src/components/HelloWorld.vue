@@ -19,7 +19,6 @@ export default {
         {action: 'Home', desc: 'Come back to this page'},
         {action: 'Add/Get/Update/Delete Movie', desc: 'Add a new movie, get information about an existing one,update an exisiting one, or delete an existing one'},
         {action: 'Get All Movies', desc: 'Information about all of the movies in the inventory'}
-        
       ]
     }
   }
