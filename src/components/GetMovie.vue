@@ -42,7 +42,7 @@ export default {
     }
   },
   methods: {
-      loggy(id){
+      loggy(){
           console.log(this.$route.params.id);
       },
       getMovie(movieID) {
