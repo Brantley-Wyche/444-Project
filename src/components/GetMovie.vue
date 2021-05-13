@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-            <tr v-for="movie in movies" :key="movie.id">
+            <tr v-for="movie in movies" :key="movie._id">
               <td>{{movie.id}}</td>
               <td>{{movie.title}}</td>
               <td>{{movie.description}}</td>
@@ -42,7 +42,7 @@ export default {
     }
   },
   methods: {
-      loggy(id){
+      loggy(){
           console.log(this.$route.params.id);
       },
       getMovie(movieID) {
