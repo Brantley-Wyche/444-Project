@@ -142,7 +142,7 @@ export default {
       
     },
     getMovies() {
-      axios.get(`${this.$hostname}/movies`)
+      axios.get(`${this.$hostname}/allmovies`)
         .then((res) => {
           this.movies = res.data.movies;
         })
@@ -163,7 +163,7 @@ export default {
         });
     },
     addMovie(new_movie) {
-      axios.post(`${this.$hostname}/movie`, new_movie)
+      axios.post(`${this.$hostname}/crudmovie`, new_movie)
         .then(() => {
           this.getMovies();
           this.message = 'Movie added!';
