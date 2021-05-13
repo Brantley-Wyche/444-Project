@@ -45,7 +45,7 @@ export default {
       axios.get(`${this.$hostname}/movies`)
         .then((res) => {
           console.log(res);
-          this.movies = res.data.movies;
+          this.movies = res.data;
         })
         .catch((error) => {
           // eslint-disable-next-line
