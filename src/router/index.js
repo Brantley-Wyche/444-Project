@@ -16,17 +16,17 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/crudmovie',
+      path: '/movie',
       name: 'CRUDMovie',
       component: CRUDMovie
     },
     {
-      path: '/getmovie/:id',
+      path: '/movie/:id',
       name: 'GetMovie',
       component: GetMovie
     },
     {
-      path: '/allmovies',
+      path: '/movies',
       name: 'AllMovies',
       component: AllMovies
     }
